@@ -3,5 +3,19 @@
 	"EngineAssociation": "4.22",
 	"Category": "",
 	"Description": "",
-	"Enterprise": true
+	"Enterprise": true,
+	"Modules": [
+		{
+			"Name": "DevTest",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
+	"TargetPlatforms": [
+		"HTML5",
+		"WindowsNoEditor"
+	]
 }
