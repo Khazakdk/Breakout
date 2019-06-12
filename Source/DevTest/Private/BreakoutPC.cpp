@@ -2,6 +2,7 @@
 
 
 #include "BreakoutPC.h"
+#include "PaddlePawn.h"
 
 ABreakoutPC::ABreakoutPC() 
 {
@@ -33,7 +34,7 @@ void ABreakoutPC::Pause()
 
 void ABreakoutPC::MoveHorizontal(float AxisValue)
 {
-	auto pawn = Cast<APawn>(GetPawn());
+	auto pawn = Cast<APaddlePawn>(GetPawn());
 	if (pawn)
 	{
 		pawn->MoveHorizontal(AxisValue);
