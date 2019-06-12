@@ -8,6 +8,7 @@ APaddlePawn::APaddlePawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	this->speed = 500.0;
 
 }
 
@@ -25,10 +26,9 @@ void APaddlePawn::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void APaddlePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void APaddlePawn::MoveHorizontal(float AxisValue)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	float xMagnitude = AxisValue * this->speed;
+	Super::AddMovementInput(FVector(AxisValue, 0.0, 0.0), xMagnitude, false);
 }
 
