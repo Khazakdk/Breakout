@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Ball.h"
 #include "BreakoutPC.generated.h"
+
+
+
 
 /**
  * 
@@ -31,5 +35,9 @@ class DEVTEST_API ABreakoutPC : public APlayerController
 		void Launch();
 		void Pause();
 		void MoveHorizontal(float AxisValue);
+
+		virtual void BeginPlay() override;
+
+		ABall* ball;
 };
 

@@ -4,10 +4,12 @@
 #include "BreakoutPC.h"
 #include "PaddlePawn.h"
 
+
 ABreakoutPC::ABreakoutPC() 
 {
 	bBallLaunched = false;
 	speed = 500.0;
+	//spawn the ball at 10,0,40 above the possessed pawn
 }
 
 void ABreakoutPC::SetupInputComponent()
@@ -24,7 +26,7 @@ void ABreakoutPC::Launch()
 	if (bBallLaunched == false)
 	{
 		bBallLaunched = true;
-		// call dispatch here
+		ball->Launch();
 	}
 }
 
@@ -40,5 +42,13 @@ void ABreakoutPC::MoveHorizontal(float AxisValue)
 	{
 		pawn->MoveHorizontal(AxisValue);
 	}
+}
+
+void ABreakoutPC::BeginPlay()
+{
+	FVector spawnLocation(10.0, 0.0, 40.0);
+	FRotator rotation(0.0, 0.0, 0.0);
+	FActorSpawnParameters spawnInfo;
+	ball = GetWorld()->SpawnActor<ABall>(spawnLocation, rotation, spawnInfo);
 }
 

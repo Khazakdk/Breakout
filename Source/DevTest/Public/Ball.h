@@ -17,6 +17,9 @@ public:
 	// Sets default values for this actor's properties
 	ABall();
 
+	UFUNCTION()
+	virtual void Launch();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -26,6 +29,7 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Projectile Movement Component")
 	UProjectileMovementComponent* ProjectileMovement;
+
 
 public:	
 	// Called every frame

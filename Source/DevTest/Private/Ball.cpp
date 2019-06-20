@@ -33,6 +33,11 @@ void ABall::BeginPlay()
 	
 }
 
+void ABall::Launch()
+{
+	SM_Ball->AddImpulse(FVector(140, 0, 130), FName(), true);
+}
+
 // Called every frame
 void ABall::Tick(float DeltaTime)
 {
