@@ -22,14 +22,12 @@ class DEVTEST_API ABreakoutPC : public APlayerController
 		// Sets default values for this actor's properties
 		ABreakoutPC();
 
+		UFUNCTION()
 		virtual void SetupInputComponent() override;
 
 	protected:
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Variables")
-		float speed;
-
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Variables")
-		bool bBallLaunched;
+		bool BallLaunched;
 
 		// Input functions
 		void Launch();
@@ -38,6 +36,6 @@ class DEVTEST_API ABreakoutPC : public APlayerController
 
 		virtual void BeginPlay() override;
 
-		ABall* ball;
+		ABall* Ball;
 };
 

@@ -7,15 +7,12 @@
 
 ABreakoutPC::ABreakoutPC() 
 {
-	bBallLaunched = false;
-	speed = 500.0;
-	//spawn the ball at 10,0,40 above the possessed pawn
+	BallLaunched = false;
 }
 
 void ABreakoutPC::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-
 	InputComponent->BindAction("Launch", IE_Pressed, this, &ABreakoutPC::Launch);
 	InputComponent->BindAction("Pause", IE_Pressed, this, &ABreakoutPC::Pause);
 	InputComponent->BindAxis("MoveHorizontal", this, &ABreakoutPC::MoveHorizontal);
@@ -23,10 +20,10 @@ void ABreakoutPC::SetupInputComponent()
 
 void ABreakoutPC::Launch()
 {
-	if (bBallLaunched == false)
+	if (BallLaunched == false)
 	{
-		bBallLaunched = true;
-		ball->Launch();
+		BallLaunched = true;
+		Ball->Launch();
 	}
 }
 
@@ -46,9 +43,11 @@ void ABreakoutPC::MoveHorizontal(float AxisValue)
 
 void ABreakoutPC::BeginPlay()
 {
+	//EnableInput(this);
 	FVector spawnLocation(10.0, 0.0, 40.0);
 	FRotator rotation(0.0, 0.0, 0.0);
 	FActorSpawnParameters spawnInfo;
-	ball = GetWorld()->SpawnActor<ABall>(spawnLocation, rotation, spawnInfo);
+	UE_LOG(LogTemp, Warning, TEXT("move"));
+	Ball = GetWorld()->SpawnActor<ABall>(spawnLocation, rotation, spawnInfo);
 }
 

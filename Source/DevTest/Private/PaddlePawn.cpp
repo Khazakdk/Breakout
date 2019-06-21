@@ -8,7 +8,15 @@ APaddlePawn::APaddlePawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	this->speed = 500.0;
+	Speed = 500.0;
+	SmPaddle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SmPaddle"));
+	RootComponent = SmPaddle;
+	SmPaddle->SetSimulatePhysics(true);
+	SmPaddle->SetConstraintMode(EDOFMode::XZPlane);
+	SmPaddle->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	SmPaddle->SetCollisionProfileName(TEXT("PhysicsActor"));
+
+	FloatingMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"))
 
 }
 
@@ -28,7 +36,6 @@ void APaddlePawn::Tick(float DeltaTime)
 
 void APaddlePawn::MoveHorizontal(float AxisValue)
 {
-	float xMagnitude = AxisValue * this->speed;
-	Super::AddMovementInput(FVector(AxisValue, 0.0, 0.0), xMagnitude, false);
+	Super::AddMovementInput(FVector(AxisValue, 0.0, 0.0), AxisValue * Speed, false);
 }
 

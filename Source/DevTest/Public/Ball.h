@@ -25,7 +25,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Static Mesh Component")
-	UStaticMeshComponent* SM_Ball;
+	UStaticMeshComponent* SmBall;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Projectile Movement Component")
 	UProjectileMovementComponent* ProjectileMovement;

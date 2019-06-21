@@ -10,12 +10,12 @@ ABall::ABall()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set root component
-	SM_Ball = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SM_BALL"));
-	RootComponent = SM_Ball;
-	SM_Ball->SetSimulatePhysics(true);
-	SM_Ball->SetConstraintMode(EDOFMode::XZPlane);
-	SM_Ball->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	SM_Ball->SetCollisionProfileName(TEXT("PhysicsActor"));
+	SmBall = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SmBall"));
+	RootComponent = SmBall;
+	SmBall->SetSimulatePhysics(true);
+	SmBall->SetConstraintMode(EDOFMode::XZPlane);
+	SmBall->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	SmBall->SetCollisionProfileName(TEXT("PhysicsActor"));
 
 	// Set movement component
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
@@ -35,7 +35,7 @@ void ABall::BeginPlay()
 
 void ABall::Launch()
 {
-	SM_Ball->AddImpulse(FVector(140, 0, 130), FName(), true);
+	SmBall->AddImpulse(FVector(140, 0, 130), FName(), true);
 }
 
 // Called every frame

@@ -20,11 +20,11 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Static Mesh Component")
-	UStaticMeshComponent* SM_Brick;
+	UStaticMeshComponent* SmBrick;
 
-	int hitsToBreak;
-	int hitsTaken;
-	float speedModifierOnBounce;
+	int HitsToBreak;
+	int HitsTaken;
+	float SpeedModifierOnBounce;
 
 public:	
 	// Called every frame

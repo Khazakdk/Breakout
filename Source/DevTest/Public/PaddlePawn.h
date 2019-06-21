@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/FloatingPawnMovement.h"
 #include "PaddlePawn.generated.h"
 
 UCLASS()
@@ -18,8 +19,15 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Speed")
-	float speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Static Mesh Component")
+	UStaticMeshComponent* SmPaddle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floating Pawn Component")
+	UFloatingPawnMovement* FloatingMovement;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Speed")
+	float Speed;
 
 public:	
 	// Called every frame
