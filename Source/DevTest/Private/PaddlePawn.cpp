@@ -11,12 +11,12 @@ APaddlePawn::APaddlePawn()
 	Speed = 500.0;
 	SmPaddle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SmPaddle"));
 	RootComponent = SmPaddle;
-	SmPaddle->SetSimulatePhysics(true);
+	//SmPaddle->SetSimulatePhysics(true);
 	SmPaddle->SetConstraintMode(EDOFMode::XZPlane);
 	SmPaddle->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	SmPaddle->SetCollisionProfileName(TEXT("PhysicsActor"));
 
-	FloatingMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"))
+	FloatingMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"));
 
 }
 
@@ -36,6 +36,6 @@ void APaddlePawn::Tick(float DeltaTime)
 
 void APaddlePawn::MoveHorizontal(float AxisValue)
 {
-	Super::AddMovementInput(FVector(AxisValue, 0.0, 0.0), AxisValue * Speed, false);
+	Super::AddMovementInput(FVector(AxisValue, 0.0, 0.0), 1.0, false);
 }
 

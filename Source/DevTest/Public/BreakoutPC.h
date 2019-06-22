@@ -7,9 +7,6 @@
 #include "Ball.h"
 #include "BreakoutPC.generated.h"
 
-
-
-
 /**
  * 
  */
@@ -35,6 +32,10 @@ class DEVTEST_API ABreakoutPC : public APlayerController
 		void MoveHorizontal(float AxisValue);
 
 		virtual void BeginPlay() override;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ball Blueprint")
+		TSubclassOf<class ABall> ABallClass;
+
 
 		ABall* Ball;
 };

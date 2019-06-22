@@ -13,6 +13,7 @@ ABall::ABall()
 	SmBall = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SmBall"));
 	RootComponent = SmBall;
 	SmBall->SetSimulatePhysics(true);
+	SmBall->SetEnableGravity(false);
 	SmBall->SetConstraintMode(EDOFMode::XZPlane);
 	SmBall->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	SmBall->SetCollisionProfileName(TEXT("PhysicsActor"));
@@ -35,6 +36,7 @@ void ABall::BeginPlay()
 
 void ABall::Launch()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Launching ball"));
 	SmBall->AddImpulse(FVector(140, 0, 130), FName(), true);
 }
 
