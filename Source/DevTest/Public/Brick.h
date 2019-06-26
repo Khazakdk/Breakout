@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/BoxComponent.h"
 #include "Brick.generated.h"
 
 UCLASS()
@@ -22,10 +23,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Static Mesh Component")
 	UStaticMeshComponent* SmBrick;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision component")
+	UBoxComponent* BcComponent;
+
 	int HitsToBreak;
-	int HitsTaken;
 	float SpeedModifierOnBounce;
 
+	UFUNCTION()
+	void OnCompHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Powerup Blueprint")
+	TSubclassOf<class APowerup> APowerupClass;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -45,7 +45,6 @@ void ABreakoutPC::MoveHorizontal(float AxisValue)
 
 void ABreakoutPC::BeginPlay()
 {
-	//EnableInput(this);
 	FVector spawnLocation(10.0, 0.0, 40.0);
 	FRotator rotation(0.0, 0.0, 0.0);
 	FActorSpawnParameters spawnInfo;

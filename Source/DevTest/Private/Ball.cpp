@@ -47,3 +47,10 @@ void ABall::Tick(float DeltaTime)
 
 }
 
+UStaticMeshComponent* ABall::GetBall()
+{
+	return SmBall;
+}
+
+
+
