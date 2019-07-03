@@ -4,6 +4,7 @@
 #include "Brick.h"
 #include "Ball.h"
 #include "Math/UnrealMathUtility.h"
+#include "Powerup.h"
 
 // Sets default values
 ABrick::ABrick()
@@ -46,11 +47,14 @@ void ABrick::OnCompHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UP
 			float powerupRoll = FMath::FRandRange(0.0, .99);
 			if (powerupRoll > .10)
 			{
+				UE_LOG(LogTemp, Warning, TEXT("Attempting to spawn powerup"));
 				FRotator rotation(0.0, 0.0, 0.0);
 				FActorSpawnParameters spawnInfo;
 				if (APowerupClass)
 				{
-					GetWorld()->SpawnActor<ABall>(APowerupClass, ball->GetActorLocation(), rotation, spawnInfo);
+					GetWorld()->SpawnActor<APowerup>(APowerupClass, ball->GetActorLocation(), rotation, spawnInfo);
+					UE_LOG(LogTemp, Warning, TEXT("Spawned powerup"));
+				}
 			}
 		}
 	}

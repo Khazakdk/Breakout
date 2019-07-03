@@ -32,18 +32,11 @@ protected:
 	UFUNCTION()
 	void OnCompHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Powerup Blueprint")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Powerup Blueprint")
 	TSubclassOf<class APowerup> APowerupClass;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 };
-
-/*
-static mesh component
-hitstobreak
-bouncespeed
-set ball velocity
-track hits and spawn powerup
-*/
