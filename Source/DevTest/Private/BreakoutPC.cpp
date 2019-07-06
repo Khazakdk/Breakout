@@ -31,7 +31,23 @@ void ABreakoutPC::Launch()
 
 void ABreakoutPC::Pause()
 {
-	// add code to call menu here
+	if (PauseMenuWidgetClass != nullptr)
+	{
+		PauseMenuWidget = CreateWidget<UUserWidget>(GetWorld(), PauseMenuWidgetClass);
+		if (PauseMenuWidget != nullptr)
+		{
+			SetPause(true);
+			PauseMenuWidget->AddToViewport();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Failed to create pause menu"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No pause menu class selected in blueprint"));
+	}
 }
 
 void ABreakoutPC::MoveHorizontal(float AxisValue)

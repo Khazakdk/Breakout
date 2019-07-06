@@ -12,15 +12,15 @@ ABrick::ABrick()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SpeedModifierOnBounce = 1.01;
+
 	SmBrick = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SmBrick"));
 	RootComponent = SmBrick;
-	SmBrick->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	
+	SmBrick->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);	
 
 	BcComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BcComponent"));
 	BcComponent->SetBoxExtent(FVector(25.0, 10.0, 10.0));
 	BcComponent->SetNotifyRigidBodyCollision(true);
-
 	BcComponent->OnComponentHit.AddDynamic(this, &ABrick::OnCompHit);
 }
 
@@ -38,14 +38,14 @@ void ABrick::OnCompHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UP
 	if (ball != nullptr)
 	{
 		FVector ballVelocity = ball->GetVelocity();
-		ballVelocity *= SpeedModifierOnBounce;
+		ballVelocity *= (SpeedModifierOnBounce-1.0);
 		ball->GetBall()->SetPhysicsLinearVelocity(ballVelocity, true);
 		HitsToBreak--;
 		if (HitsToBreak <= 0)
 		{
 			Super::Destroy();
 			float powerupRoll = FMath::FRandRange(0.0, .99);
-			if (powerupRoll > .10)
+			if (powerupRoll < .10)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Attempting to spawn powerup"));
 				FRotator rotation(0.0, 0.0, 0.0);

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Blueprint/UserWidget.h"
 #include "BreakoutGameMode.generated.h"
 
 /**
@@ -17,5 +18,13 @@ class DEVTEST_API ABreakoutGameMode : public AGameModeBase
 public:
 	// default constructor 
 	ABreakoutGameMode();
+
+protected:
+	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD Widget")
+	TSubclassOf<class UHudData> HudWidgetClass;
+
+	UHudData* HudWidget;
 
 };

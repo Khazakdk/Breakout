@@ -5,12 +5,33 @@
 #include "BreakoutGameMode.h"
 #include "PaddlePawn.h"
 #include "BreakoutPC.h"
+#include "HudData.h"
 
 ABreakoutGameMode::ABreakoutGameMode()
 {
-	// change certain gamemode defaults like in the gamemode blueprint
-	DefaultPawnClass = APaddlePawn::StaticClass();
-	PlayerControllerClass = ABreakoutPC::StaticClass();
+	
+}
+
+void ABreakoutGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	if (HudWidgetClass != nullptr)
+	{
+		HudWidget = CreateWidget<UHudData>(GetWorld(), HudWidgetClass);
+		if (HudWidget != nullptr)
+		{
+			HudWidget->AddToViewport();
+			HudWidget->SetTxtLevelCounter(TEXT("1"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Failed to create pause menu"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No pause menu class selected in blueprint"));
+	}
 }
 
 // things gamemode or gamemode like class needs to do

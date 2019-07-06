@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Ball.h"
+#include "Blueprint/UserWidget.h"
 #include "BreakoutPC.generated.h"
 
 /**
@@ -35,6 +36,11 @@ class DEVTEST_API ABreakoutPC : public APlayerController
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ball Blueprint")
 		TSubclassOf<class ABall> ABallClass;
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pause Menu Widget")
+		TSubclassOf<class UUserWidget> PauseMenuWidgetClass;
+
+		UUserWidget* PauseMenuWidget;
 
 
 		ABall* Ball;
