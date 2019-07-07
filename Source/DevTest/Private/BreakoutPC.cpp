@@ -3,7 +3,8 @@
 
 #include "BreakoutPC.h"
 #include "PaddlePawn.h"
-
+#include "Kismet/GameplayStatics.h"
+#include "Camera/CameraActor.h"
 
 ABreakoutPC::ABreakoutPC() 
 {
@@ -72,4 +73,15 @@ void ABreakoutPC::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Ball blueprint not set!  Not spawning ball"));
 	}
+
+	// get camera after spawning ball
+	TArray<AActor*> cameraActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACameraActor::StaticClass(), cameraActors);
+	if (cameraActors.Num() > 1)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("More than one camera actor found!  Only one camera actor should exist in the level"));
+	}
+
+	FViewTargetTransitionParams Params;
+	SetViewTarget(cameraActors[0], Params);
 }

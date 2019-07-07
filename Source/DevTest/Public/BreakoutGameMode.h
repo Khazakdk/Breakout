@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Blueprint/UserWidget.h"
+#include "HudData.h"
 #include "BreakoutGameMode.generated.h"
 
 /**
@@ -26,5 +27,8 @@ protected:
 	TSubclassOf<class UHudData> HudWidgetClass;
 
 	UHudData* HudWidget;
+
+	int LivesAtStart;
+	int LivesLeft;
 
 };

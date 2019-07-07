@@ -3,13 +3,12 @@
 
 
 #include "BreakoutGameMode.h"
-#include "PaddlePawn.h"
-#include "BreakoutPC.h"
-#include "HudData.h"
+#include "Internationalization/Text.h"
 
 ABreakoutGameMode::ABreakoutGameMode()
 {
-	
+	LivesAtStart = 5;
+	LivesLeft = 5;
 }
 
 void ABreakoutGameMode::BeginPlay()
@@ -21,22 +20,23 @@ void ABreakoutGameMode::BeginPlay()
 		if (HudWidget != nullptr)
 		{
 			HudWidget->AddToViewport();
-			HudWidget->SetTxtLevelCounter(TEXT("1"));
+			HudWidget->SetTxtLevelCounter(FText::FromString(TEXT("1")));
+			HudWidget->SetTxtLifeCounter(FText::FromString(FString::FromInt(LivesLeft)));
+			HudWidget->SetTxtBrickBrokenCounter(FText::FromString(TEXT("0")));
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Failed to create pause menu"));
+			UE_LOG(LogTemp, Warning, TEXT("Failed to create hud"));
 		}
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No pause menu class selected in blueprint"));
+		UE_LOG(LogTemp, Warning, TEXT("No hud class selected in blueprint"));
 	}
-}
 
-// things gamemode or gamemode like class needs to do
-// spawn camera, set camera, set UI
-// expose these properties in blueprint for easy editing 
+	
+}
+ 
 // possibly handle brick spawning (certainly need a way to track bricks to track counts)
 // I'm more okay with leaving the above point in the level blueprint, along with next level trigger
 // individual brick counts are level specific, so is level order so appropriate to use level blueprint
