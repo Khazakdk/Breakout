@@ -7,6 +7,8 @@
 #include "Components/BoxComponent.h"
 #include "Brick.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDestroyedSignature);
+
 UCLASS()
 class DEVTEST_API ABrick : public AActor
 {
@@ -15,6 +17,9 @@ class DEVTEST_API ABrick : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ABrick();
+
+	UPROPERTY(BlueprintAssignable)
+	FDestroyedSignature DestroyedNotifier;
 
 protected:
 	// Called when the game starts or when spawned

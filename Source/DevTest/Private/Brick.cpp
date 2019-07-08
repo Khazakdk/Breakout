@@ -56,6 +56,7 @@ void ABrick::OnCompHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UP
 					UE_LOG(LogTemp, Warning, TEXT("Spawned powerup"));
 				}
 			}
+			DestroyedNotifier.Broadcast();
 		}
 	}
 }

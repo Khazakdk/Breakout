@@ -23,6 +23,11 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	void LoadLevel(FString levelName);
+
+	void OnBrickDestroyed();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD Widget")
 	TSubclassOf<class UHudData> HudWidgetClass;
 
@@ -30,5 +35,6 @@ protected:
 
 	int LivesAtStart;
 	int LivesLeft;
+	int BricksBroken;
 
 };
