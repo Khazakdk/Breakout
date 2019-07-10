@@ -36,8 +36,12 @@ void ABall::BeginPlay()
 
 void ABall::Launch()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Launching ball"));
-	SmBall->AddImpulse(FVector(140, 0, 130), FName(), true);
+	if (BallLaunched == false)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Launching ball"));
+		SmBall->AddImpulse(FVector(140, 0, 130), FName(), true);
+		BallLaunched = true;
+	}
 }
 
 // Called every frame

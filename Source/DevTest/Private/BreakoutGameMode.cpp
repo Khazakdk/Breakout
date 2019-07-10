@@ -9,9 +9,8 @@
 
 ABreakoutGameMode::ABreakoutGameMode()
 {
-	LivesAtStart = 5;
-	LivesLeft = 5;
-	BricksBroken = 0;
+	LivesAtStart, LivesLeft = 5;
+	BricksBroken, TotalBricks = 0;
 }
 
 void ABreakoutGameMode::BeginPlay()
@@ -38,16 +37,25 @@ void ABreakoutGameMode::BeginPlay()
 	}	
 }
 
-void ABreakoutGameMode::LoadLevel(FString levelName)
+void ABreakoutGameMode::LoadLevel(FName levelName)
+{
+	FLatentActionInfo latentInfo(0, 0, TEXT("BindBrickDelegates"), this);
+	UGameplayStatics::LoadStreamLevel(GetWorld(), levelName, true, true, latentInfo);
+	LivesLeft = LivesAtStart;
+	BricksBroken = 0;
+}
+
+void ABreakoutGameMode::BindBrickDelegates()
 {
 	TArray<AActor*> brickActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABrick::StaticClass(), brickActors);
+	UE_LOG(LogTemp, Warning, TEXT("Binding %i bricks"), brickActors.Num());
+	TotalBricks = brickActors.Num();
 	for (AActor* actor : brickActors)
 	{
 		ABrick* brick = Cast<ABrick>(actor);
 		if (brick != nullptr)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Binding brick delegate to gamemode"));
 			brick->DestroyedNotifier.AddDynamic(this, &ABreakoutGameMode::OnBrickDestroyed);
 		}
 	}
@@ -66,7 +74,11 @@ void ABreakoutGameMode::OnBrickDestroyed()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("not incremeting counter, no hud widget"));
 	}
-	// check bricks broken against total, load next level
+	if (BricksBroken >= TotalBricks)
+	{
+		// todo: implement some sort of linked list(?) to load next instead of hardcoding
+		LoadLevel("Sublevel_B");
+	}
 }
 
 

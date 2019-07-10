@@ -20,6 +20,9 @@ public:
 	UFUNCTION()
 	virtual void Launch();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Variables")
+	bool BallLaunched;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

@@ -24,9 +24,6 @@ class DEVTEST_API ABreakoutPC : public APlayerController
 		virtual void SetupInputComponent() override;
 
 	protected:
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Variables")
-		bool BallLaunched;
-
 		// Input functions
 		void Launch();
 		void Pause();

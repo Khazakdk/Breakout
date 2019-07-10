@@ -14,7 +14,7 @@ APowerup::APowerup()
 	SmSphere->SetSimulatePhysics(true);
 	SmSphere->SetEnableGravity(true);
 	SmSphere->SetConstraintMode(EDOFMode::XZPlane);
-	SmSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	SmSphere->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	SmSphere->SetCollisionProfileName(TEXT("OverlapAll"));
 	SmSphere->SetMassOverrideInKg(TEXT("SmSphere"), 0.5, true);
 	SmSphere->SetLinearDamping(4.0);

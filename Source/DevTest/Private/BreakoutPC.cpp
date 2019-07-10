@@ -8,7 +8,6 @@
 
 ABreakoutPC::ABreakoutPC() 
 {
-	BallLaunched = false;
 }
 
 void ABreakoutPC::SetupInputComponent()
@@ -22,12 +21,8 @@ void ABreakoutPC::SetupInputComponent()
 
 void ABreakoutPC::Launch()
 {
-	if (BallLaunched == false)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Sending launch ball"));
-		BallLaunched = true;
-		Ball->Launch();
-	}
+	UE_LOG(LogTemp, Warning, TEXT("Sending launch ball"));
+	Ball->Launch();
 }
 
 void ABreakoutPC::Pause()
